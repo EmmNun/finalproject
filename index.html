@@ -3,46 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A modern volleyball-themed website">
-    <title>Volleyball World</title>
+    <meta name="description" content="Volleyball Website - Home">
+    <title>Home - Volleyball</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Welcome to Volleyball World</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    
+
     <section>
         <article>
-            <h2>Explore the Exciting World of Volleyball</h2>
-            <p>Discover tips, techniques, and the latest updates in the volleyball world.</p>
-            <img src="https://source.unsplash.com/800x400/?volleyball" alt="Volleyball Image">
+            <h2>About Volleyball</h2>
+            <p>Volleyball is a team sport played by two teams of six players each on a rectangular court...</p>
+            <img src="https://images.unsplash.com/photo-1575616521193-0a5766fc98d4" alt="Volleyball match" class="responsive-img">
         </article>
     </section>
-    
+
     <footer>
-        <p>&copy; 2025 Volleyball World</p>
+        <p>&copy; 2025 Volleyball World. All rights reserved.</p>
     </footer>
-    
-    <script>
-        const colors = ["#E0F7FA", "#0288D1", "#01579B"];
-        const userName = prompt("What is your name?");
-        const colorChoice = prompt("Pick a background color: 0 for light blue, 1 for medium blue, 2 for dark blue");
-        
-        const userInfo = {
-            name: userName,
-            selectedColor: colors[colorChoice]
-        };
-        
-        document.body.style.backgroundColor = userInfo.selectedColor;
-    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
