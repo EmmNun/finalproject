@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern volleyball-themed website">
+    <title>Volleyball World</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Volleyball World</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section>
+        <article>
+            <h2>Explore the Exciting World of Volleyball</h2>
+            <p>Discover tips, techniques, and the latest updates in the volleyball world.</p>
+            <img src="https://source.unsplash.com/800x400/?volleyball" alt="Volleyball Image">
+        </article>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Volleyball World</p>
+    </footer>
+    
+    <script>
+        const colors = ["#E0F7FA", "#0288D1", "#01579B"];
+        const userName = prompt("What is your name?");
+        const colorChoice = prompt("Pick a background color: 0 for light blue, 1 for medium blue, 2 for dark blue");
+        
+        const userInfo = {
+            name: userName,
+            selectedColor: colors[colorChoice]
+        };
+        
+        document.body.style.backgroundColor = userInfo.selectedColor;
+    </script>
+</body>
+</html>
