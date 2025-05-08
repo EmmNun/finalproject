@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn how to play volleyball with professional techniques">
     <title>Volleyball World - How to Play</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5M55YE8DRN');
+</script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,13 +19,27 @@
         <h1>🏐 Volleyball World 🏐</h1>
         <nav>
             <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="history.html">History</a></li>
-                <li><a href="rules.html">Rules</a></li>
-                <li><a href="how-to-play.html">How to Play</a></li>
-                <li><a href="best-players.html">Best Players</a></li>
+              <li><a href="index.html" 
+                     onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'Home'});">
+                     Home</a></li>
+                     
+              <li><a href="history.html" 
+                     onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'History'});">
+                     History</a></li>
+                     
+              <li><a href="rules.html" 
+                     onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'Rules'});">
+                     Rules</a></li>
+                     
+              <li><a href="how-to-play.html" 
+                     onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'How to Play'});">
+                     How to Play</a></li>
+                     
+              <li><a href="best-players.html" 
+                     onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'Best Players'});">
+                     Best Players</a></li>
             </ul>
-        </nav>
+          </nav>
     </header>
 
     <main>
@@ -69,6 +90,18 @@
     </main>
 
     <footer>
+        <!-- Add this inside the <footer> of ALL pages -->
+<div class="footer-cta">
+    <button 
+      onclick="gtag('event', 'CTR', {
+        event_category: 'callToAction',
+        event_label: 'Footer_Contact'
+      });"
+      class="cta-button"
+    >
+      📧 Contact Us
+    </button>
+  </div>
         <p>&copy; 2025 Volleyball World | </p>
     </footer>
 
