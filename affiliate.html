@@ -1,28 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Same head as other pages (with GA4 tag) -->
-    <title>Classmates website Partners</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volleyball World - Parceiros</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5M55YE8DRN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5M55YE8DRN');
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .affiliate-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .partner-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: transform 0.3s;
+        }
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .partner-link {
+            display: inline-block;
+            background: #3182ce;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .partner-link:hover {
+            background: #2c5282;
+        }
+    </style>
 </head>
 <body>
-    <header><!-- Same navigation with GA4 events --></header>
+    
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'Home'});">Home</a></li>
+                <li><a href="history.html" onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'History'});">History</a></li>
+                <li><a href="rules.html" onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'Rules'});">Rules</a></li>
+                <li><a href="how-to-play.html" onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'How to Play'});">How to play</a></li>
+                <li><a href="best-players.html" onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'Best Players'});">Best players</a></li>
+                <li><a href="affiliate.html" onclick="gtag('event', 'nav_click', {event_category: 'navigation', event_label: 'Partners'});">Affiliates</a></li>
+            </ul>
+        </nav>
+        <div id="welcome"></div> 
+    </header>
 
-    <main>
-        <h1>Our Partners</h1>
-        <div class="affiliate-links">
-            <!-- REPLACE THESE WITH PEER LINKS FROM SPREADSHEET -->
-            <a href="https://pee" 
+    <main class="affiliate-container">
+        <h1>Affiliates</h1>
+        <p>Check my classmates websites:</p>
+
+        
+        <!-- Parceiro 1 -->
+        <div class="partner-card">
+            <h3>Michaela Hodge</h3>
+            <p>Basketball World</p>
+            <a href="https://michaelasupreme.github.io/final-project/index.html" 
+               target="_blank"
                onclick="gtag('event', 'affiliate_click', {
-                 event_category: 'referral', 
-                 event_label: 'Peer1_Site'
-               });" 
-               target="_blank">
-               Peer 1 Site
+                 event_category: 'referral',
+                 event_label: 'Michaela Hodge'
+               });"
+               class="partner-link">
+               visit website
             </a>
-            <!-- Add 2 more links -->
+        </div>
+        
+        <!-- Parceiro 2 -->
+        <div class="partner-card">
+            <h3>Leo Li</h3>
+            <p>History of chess</p>
+            <a href="https://leol1i.github.io/IT030-/Final_Project_leo_li/" 
+               target="_blank"
+               onclick="gtag('event', 'affiliate_click', {
+                 event_category: 'referral',
+                 event_label: 'Leo Li'
+               });"
+               class="partner-link">
+               visit website
+            </a>
+        </div>
+        
+        <!-- Parceiro 3 -->
+        <div class="partner-card">
+            <h3>Karli Langer</h3>
+            <p>Fitness Journey</p>
+            <a href="https://karli525.github.io/KLrepo_one/Final_project/index.html" 
+               target="_blank"
+               onclick="gtag('event', 'affiliate_click', {
+                 event_category: 'referral',
+                 event_label: 'Karli Langer'
+               });"
+               class="partner-link">
+               visit website
+            </a>
         </div>
     </main>
 
-    <footer><!-- Same footer with CTA --></footer>
+    <footer>
+        <button onclick="gtag('event', 'CTR', {
+          event_category: 'callToAction',
+          event_label: 'contact me'
+        });" class="cta-button">
+            📧 Contact me        </button>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
