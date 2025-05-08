@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Same head as other pages (with GA4 tag) -->
+    <title>Classmates website Partners</title>
+</head>
+<body>
+    <header><!-- Same navigation with GA4 events --></header>
+
+    <main>
+        <h1>Our Partners</h1>
+        <div class="affiliate-links">
+            <!-- REPLACE THESE WITH PEER LINKS FROM SPREADSHEET -->
+            <a href="https://pee" 
+               onclick="gtag('event', 'affiliate_click', {
+                 event_category: 'referral', 
+                 event_label: 'Peer1_Site'
+               });" 
+               target="_blank">
+               Peer 1 Site
+            </a>
+            <!-- Add 2 more links -->
+        </div>
+    </main>
+
+    <footer><!-- Same footer with CTA --></footer>
+</body>
+</html>
