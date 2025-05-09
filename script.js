@@ -114,10 +114,33 @@ function animateCards() {
 // For debug
 console.log("Script loaded!");
 
-// Reset preferences button
+// Alternar entre dark e light mode manualmente
+document.getElementById('toggle-theme')?.addEventListener('click', () => {
+    const currentTheme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', currentTheme);
+    applyTheme(currentTheme);
+});
+
+// Mudar o nome do usuário
+document.getElementById('change-name')?.addEventListener('click', () => {
+    const newName = prompt("Qual é o seu novo nome?");
+    if (newName && newName.trim()) {
+        localStorage.setItem('userName', newName.trim());
+        location.reload();
+    }
+});
+
+// Redefinir tudo
 document.getElementById('reset-preferences')?.addEventListener('click', () => {
     if (confirm("Tem certeza que deseja redefinir suas preferências?")) {
         localStorage.clear();
         location.reload();
     }
 });
+function applyTheme(theme) {
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
