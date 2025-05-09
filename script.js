@@ -130,32 +130,3 @@ document.getElementById('change-name')?.addEventListener('click', () => {
     }
 });
 
-// Redefinir tudo
-document.getElementById('reset-preferences')?.addEventListener('click', () => {
-    if (confirm("Tem certeza que deseja redefinir suas preferências?")) {
-        localStorage.clear();
-        location.reload();
-    }
-});
-function applyTheme(theme) {
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-}
-document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('toggleBtn');
-    const content = document.getElementById('toggleContent');
-  
-    btn.addEventListener('click', function () {
-      if (content.style.display === 'none') {
-        content.style.display = 'block';
-        btn.textContent = 'Hide Info';
-      } else {
-        content.style.display = 'none';
-        btn.textContent = 'Show Info';
-      }
-    });
-  });
-  
