@@ -144,3 +144,18 @@ function applyTheme(theme) {
         document.body.classList.remove('dark-mode');
     }
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('toggleBtn');
+    const content = document.getElementById('toggleContent');
+  
+    btn.addEventListener('click', function () {
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+        btn.textContent = 'Hide Info';
+      } else {
+        content.style.display = 'none';
+        btn.textContent = 'Show Info';
+      }
+    });
+  });
+  

@@ -407,3 +407,28 @@ body {
     background-color: black;
     color: white;
 }
+.image-credit {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+  .image-credit a {
+    color: #666;
+    text-decoration: underline;
+  }
+  #toggleBtn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #toggleBtn:hover {
+    background-color: #2980b9;
+  }
+  
