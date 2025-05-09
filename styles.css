@@ -1,3 +1,114 @@
+/* ... todo o CSS anterior que já existe ... */
+
+/* Additional Interactive Styles */
+.welcome-message {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.player-card.expanded {
+    transform: scale(1.03) !important;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
+    z-index: 10;
+}
+
+.player-card.expanded .player-info {
+    background-color: var(--light);
+}
+  .footer-cta {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+  }
+  .cta-button {
+    background: #3182ce;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .cta-button:hover {
+    background: #2c5282;
+  }
+
+  /* ===== THEME SYSTEM ===== */
+:root {
+    /* Light theme defaults */
+    --bg-color: #F7FFF7;
+    --text-color: #333333;
+    --header-bg: #ee531a;
+    --nav-bg: #004E89;
+    --card-bg: white;
+    --primary: #ee531a;
+    --secondary: #004E89;
+    --accent: #FFD166;
+    --light: #F7FFF7;
+    --dark: #292F36;
+  }
+  
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --header-bg: #9e3a12;
+    --nav-bg: #00305a;
+    --card-bg: #1e1e1e;
+    --primary: #ff6b35;
+    --secondary: #003366;
+    --light: #1a1a1a;
+    --dark: #e0e0e0;
+  }
+  
+  /* Apply theme variables */
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  header {
+    background-color: var(--header-bg);
+  }
+  
+  .nav-menu {
+    background-color: var(--nav-bg);
+  }
+  
+  .card, .rule-card, .skill, .player-card {
+    background-color: var(--card-bg);
+  }
+  
+  /* Theme Toggle Button */
+  .theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.05);
+  }
+  
+  
+
 /* Base Styles & Variables */
 :root {
     --primary: #ee531a; /* Vibrant orange */
@@ -353,113 +464,3 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
-/* ... todo o CSS anterior que já existe ... */
-
-/* Additional Interactive Styles */
-.welcome-message {
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.player-card.expanded {
-    transform: scale(1.03) !important;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
-    z-index: 10;
-}
-
-.player-card.expanded .player-info {
-    background-color: var(--light);
-}
-  .footer-cta {
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
-    border-top: 1px solid #eee;
-  }
-  .cta-button {
-    background: #3182ce;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .cta-button:hover {
-    background: #2c5282;
-  }
-
-  /* ===== THEME SYSTEM ===== */
-:root {
-    /* Light theme defaults */
-    --bg-color: #F7FFF7;
-    --text-color: #333333;
-    --header-bg: #ee531a;
-    --nav-bg: #004E89;
-    --card-bg: white;
-    --primary: #ee531a;
-    --secondary: #004E89;
-    --accent: #FFD166;
-    --light: #F7FFF7;
-    --dark: #292F36;
-  }
-  
-  [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #f0f0f0;
-    --header-bg: #9e3a12;
-    --nav-bg: #00305a;
-    --card-bg: #1e1e1e;
-    --primary: #ff6b35;
-    --secondary: #003366;
-    --light: #1a1a1a;
-    --dark: #e0e0e0;
-  }
-  
-  /* Apply theme variables */
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  header {
-    background-color: var(--header-bg);
-  }
-  
-  .nav-menu {
-    background-color: var(--nav-bg);
-  }
-  
-  .card, .rule-card, .skill, .player-card {
-    background-color: var(--card-bg);
-  }
-  
-  /* Theme Toggle Button */
-  .theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .theme-toggle:hover {
-    transform: scale(1.05);
-  }
-  
-  
