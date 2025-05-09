@@ -113,3 +113,11 @@ function animateCards() {
 
 // For debug
 console.log("Script loaded!");
+
+// Reset preferences button
+document.getElementById('reset-preferences')?.addEventListener('click', () => {
+    if (confirm("Tem certeza que deseja redefinir suas preferências?")) {
+        localStorage.clear();
+        location.reload();
+    }
+});
