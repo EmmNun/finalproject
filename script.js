@@ -1,17 +1,15 @@
 // Volleyball World - Enhanced script.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize user preferences
-    initUserPreferences();
     
-    // Set up page functionality
+    initUserPreferences();
     setupNavigation();
     setupPlayerCards();
     
-    // Keep your existing color selection as fallback
+   
     initColorSelection();
 });
 
-// ===== NEW FUNCTIONALITY =====
+
 function getUserPreferences() {
     return {
         name: localStorage.getItem('userName'),
@@ -21,7 +19,7 @@ function getUserPreferences() {
 }
 
 function applyTheme(theme) {
-    document.body.className = ''; // Clear existing classes
+    document.body.className = ''; 
     if (theme === 'dark') {
         document.body.classList.add('dark-theme');
     } else {
@@ -49,7 +47,7 @@ function initUserPreferences() {
     const preferences = getUserPreferences();
     
     if (!preferences.name || !preferences.theme) {
-        // First-time user flow
+        
         const name = prompt('Welcome to Volleyball World! What is your name?') || 'Guest';
         
         let theme;
@@ -60,7 +58,7 @@ function initUserPreferences() {
         savePreferences(name, theme);
         applyTheme(theme);
         
-        // Show enhanced welcome message
+        
         showWelcomeMessage(name, true);
         
         // Keep your existing color selection
@@ -75,7 +73,6 @@ function initUserPreferences() {
     }
 }
 
-// ===== ENHANCED EXISTING FUNCTIONS =====
 function showWelcomeMessage(name, isNewUser) {
     const welcomeMsg = document.createElement('div');
     welcomeMsg.className = 'welcome-message';
@@ -91,12 +88,12 @@ function showWelcomeMessage(name, isNewUser) {
     
     document.body.prepend(welcomeMsg);
     
-    // Close button functionality
+   
     welcomeMsg.querySelector('.close-btn').addEventListener('click', function() {
         welcomeMsg.style.display = 'none';
     });
     
-    // Theme toggle functionality
+    
     welcomeMsg.querySelector('.dark').addEventListener('click', function() {
         applyTheme('dark');
         savePreferences(name, 'dark');
@@ -108,7 +105,7 @@ function showWelcomeMessage(name, isNewUser) {
     });
 }
 
-// ===== YOUR EXISTING FUNCTIONS (UPDATED) =====
+
 function initColorSelection() {
     const preferences = getUserPreferences();
     if (!preferences.color) {
@@ -130,4 +127,3 @@ function initColorSelection() {
     }
 }
 
-// ... keep your existing setupNavigation(), setupPlayerCards(), and animateCards() functions unchanged ...

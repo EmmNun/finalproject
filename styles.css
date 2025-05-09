@@ -393,3 +393,73 @@ footer {
   .cta-button:hover {
     background: #2c5282;
   }
+
+  /* ===== THEME SYSTEM ===== */
+:root {
+    /* Light theme defaults */
+    --bg-color: #F7FFF7;
+    --text-color: #333333;
+    --header-bg: #ee531a;
+    --nav-bg: #004E89;
+    --card-bg: white;
+    --primary: #ee531a;
+    --secondary: #004E89;
+    --accent: #FFD166;
+    --light: #F7FFF7;
+    --dark: #292F36;
+  }
+  
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --header-bg: #9e3a12;
+    --nav-bg: #00305a;
+    --card-bg: #1e1e1e;
+    --primary: #ff6b35;
+    --secondary: #003366;
+    --light: #1a1a1a;
+    --dark: #e0e0e0;
+  }
+  
+  /* Apply theme variables */
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  header {
+    background-color: var(--header-bg);
+  }
+  
+  .nav-menu {
+    background-color: var(--nav-bg);
+  }
+  
+  .card, .rule-card, .skill, .player-card {
+    background-color: var(--card-bg);
+  }
+  
+  /* Theme Toggle Button */
+  .theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.05);
+  }
+  
+  
