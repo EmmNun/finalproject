@@ -1,46 +1,91 @@
-// Volleyball World - script.js
+// Volleyball World - Enhanced script.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Color Selection System
-    const colors = ["#E2E2E2", "#FFD166", "#06D6A0"]; // grey, yellow, green
-    
-    // Get user input
-    const userName = prompt("Welcome to Volleyball World! What is your name?");
-    
-    if (userName !== null) { // Only proceed if user didn't cancel name prompt
-        let colorChoice;
-        
-        // Keep asking until valid color choice or cancel
-        while (true) {
-            colorChoice = prompt(`${userName}, choose a background color:\n0 for grey\n1 for yellow\n2 for green`);
-            
-            if (colorChoice === null) break; // User clicked cancel
-            colorChoice = parseInt(colorChoice);
-            
-            if (!isNaN(colorChoice) && colorChoice >= 0 && colorChoice <= 2) {
-                document.body.style.backgroundColor = colors[colorChoice];
-                break;
-            }
-            
-            alert("Please enter a number between 0-2");
-        }
-        
-        // Show welcome message if name was provided
-        if (userName.trim() !== '') {
-            showWelcomeMessage(userName);
-        }
-    }
+    // Initialize user preferences
+    initUserPreferences();
     
     // Set up page functionality
     setupNavigation();
     setupPlayerCards();
+    
+    // Keep your existing color selection as fallback
+    initColorSelection();
 });
 
-function showWelcomeMessage(name) {
+// ===== NEW FUNCTIONALITY =====
+function getUserPreferences() {
+    return {
+        name: localStorage.getItem('userName'),
+        theme: localStorage.getItem('userTheme'),
+        color: localStorage.getItem('userColor')
+    };
+}
+
+function applyTheme(theme) {
+    document.body.className = ''; // Clear existing classes
+    if (theme === 'dark') {
+        document.body.classList.add('dark-theme');
+    } else {
+        document.body.classList.add('light-theme');
+    }
+}
+
+function applyColor(colorIndex) {
+    const colors = ["#E2E2E2", "#FFD166", "#06D6A0"];
+    if (colorIndex >= 0 && colorIndex <= 2) {
+        document.body.style.backgroundColor = colors[colorIndex];
+        localStorage.setItem('userColor', colorIndex);
+    }
+}
+
+function savePreferences(name, theme, color) {
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userTheme', theme);
+    if (color !== undefined) {
+        localStorage.setItem('userColor', color);
+    }
+}
+
+function initUserPreferences() {
+    const preferences = getUserPreferences();
+    
+    if (!preferences.name || !preferences.theme) {
+        // First-time user flow
+        const name = prompt('Welcome to Volleyball World! What is your name?') || 'Guest';
+        
+        let theme;
+        do {
+            theme = prompt(`${name}, do you prefer dark or light mode? (dark/light)`).toLowerCase();
+        } while (theme !== 'dark' && theme !== 'light');
+        
+        savePreferences(name, theme);
+        applyTheme(theme);
+        
+        // Show enhanced welcome message
+        showWelcomeMessage(name, true);
+        
+        // Keep your existing color selection
+        initColorSelection();
+    } else {
+        // Returning user flow
+        applyTheme(preferences.theme);
+        if (preferences.color) {
+            applyColor(parseInt(preferences.color));
+        }
+        showWelcomeMessage(preferences.name, false);
+    }
+}
+
+// ===== ENHANCED EXISTING FUNCTIONS =====
+function showWelcomeMessage(name, isNewUser) {
     const welcomeMsg = document.createElement('div');
     welcomeMsg.className = 'welcome-message';
     welcomeMsg.innerHTML = `
-        <h3>Welcome, ${name}!</h3>
+        <h3>${isNewUser ? 'Welcome' : 'Welcome back'}, ${name}!</h3>
         <p>Enjoy exploring volleyball!</p>
+        <div class="theme-toggle">
+            <button class="theme-btn dark">Dark Mode</button>
+            <button class="theme-btn light">Light Mode</button>
+        </div>
         <button class="close-btn">×</button>
     `;
     
@@ -50,59 +95,39 @@ function showWelcomeMessage(name) {
     welcomeMsg.querySelector('.close-btn').addEventListener('click', function() {
         welcomeMsg.style.display = 'none';
     });
-}
-
-function setupNavigation() {
-    // Highlight current page in nav
-    const currentPage = location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
+    
+    // Theme toggle functionality
+    welcomeMsg.querySelector('.dark').addEventListener('click', function() {
+        applyTheme('dark');
+        savePreferences(name, 'dark');
+    });
+    
+    welcomeMsg.querySelector('.light').addEventListener('click', function() {
+        applyTheme('light');
+        savePreferences(name, 'light');
     });
 }
 
-function setupPlayerCards() {
-    // Make player cards interactive
-    const playerCards = document.querySelectorAll('.player-card');
-    
-    playerCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // Don't trigger if clicking on a link inside the card
-            if (e.target.tagName === 'A') return;
-            
-            // Close all other expanded cards first
-            document.querySelectorAll('.player-card.expanded').forEach(c => {
-                if (c !== this) c.classList.remove('expanded');
-            });
-            
-            // Toggle this card's expanded state
-            this.classList.toggle('expanded');
-        });
-    });
-    
-    // Close expanded cards when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.player-card')) {
-            playerCards.forEach(card => card.classList.remove('expanded'));
-        }
-    });
-    
-    // Animate cards on page load
-    animateCards();
-}
-
-function animateCards() {
-    // Fade-in animation for cards
-    const cards = document.querySelectorAll('.card, .player-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s, transform 0.5s';
+// ===== YOUR EXISTING FUNCTIONS (UPDATED) =====
+function initColorSelection() {
+    const preferences = getUserPreferences();
+    if (!preferences.color) {
+        const colors = ["#E2E2E2", "#FFD166", "#06D6A0"];
+        let colorChoice;
         
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, 100 * index);
-    });
+        while (true) {
+            colorChoice = prompt(`Choose a background color:\n0 for grey\n1 for yellow\n2 for green`);
+            
+            if (colorChoice === null) break;
+            colorChoice = parseInt(colorChoice);
+            
+            if (!isNaN(colorChoice) && colorChoice >= 0 && colorChoice <= 2) {
+                applyColor(colorChoice);
+                break;
+            }
+            alert("Please enter a number between 0-2");
+        }
+    }
 }
+
+// ... keep your existing setupNavigation(), setupPlayerCards(), and animateCards() functions unchanged ...
