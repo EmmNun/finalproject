@@ -393,3 +393,17 @@ footer {
   .cta-button:hover {
     background: #2c5282;
   }
+/* Default light mode styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;
+    color: black;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Dark mode styles (will be applied via JavaScript) */
+.dark-mode {
+    background-color: black;
+    color: white;
+}
