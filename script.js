@@ -55,17 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function applyTheme(theme) {
     const body = document.body;
-    
+
     if (theme === 'dark') {
-        body.style.backgroundColor = '#292F36';
-        body.style.color = '#F7FFF7';
-        // Additional dark theme styles can be applied here
+        body.classList.add('dark-mode');
     } else {
-        body.style.backgroundColor = '#F7FFF7';
-        body.style.color = '#333333';
-        // Additional light theme styles can be applied here
+        body.classList.remove('dark-mode');
     }
 }
+
 
 function showWelcomeMessage(name, isReturning) {
     const welcomeMsg = document.createElement('div');

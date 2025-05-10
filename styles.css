@@ -393,3 +393,31 @@ footer {
   .cta-button:hover {
     background: #2c5282;
   }
+  body.dark-mode {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+body.dark-mode .card,
+body.dark-mode .player-card,
+body.dark-mode .rule-card,
+body.dark-mode .timeline article,
+body.dark-mode .skill,
+body.dark-mode .player-info {
+    background-color: #1f252b;
+    color: var(--light);
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: #1a1f24;
+}
+
+body.dark-mode .nav-menu {
+    background-color: #00325c;
+}
+
+body.dark-mode .nav-menu a:hover {
+    background-color: var(--accent);
+    color: var(--dark);
+}
