@@ -1,71 +1,59 @@
 // Volleyball World - script.js
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
+    // Color Selection System
     const colors = ["#E2E2E2", "#FFD166", "#06D6A0"]; // grey, yellow, green
-
-    let userName = localStorage.getItem('userName');
-    let theme = localStorage.getItem('theme');
-    let colorIndex = localStorage.getItem('colorIndex');
-
-    if (!userName || !theme || colorIndex === null) {
-        userName = prompt("Welcome to Volleyball World! What is your name?");
-        if (userName) {
-            localStorage.setItem('userName', userName);
-
-            theme = prompt(`${userName}, would you like 'light' or 'dark' mode? (Type light or dark)`).toLowerCase();
-            if (theme !== 'dark') theme = 'light'; // fallback
-            localStorage.setItem('theme', theme);
-
-            let choice;
-            while (true) {
-                choice = prompt(`${userName}, choose a background color:\n0 for grey\n1 for yellow\n2 for green`);
-                if (choice === null) break;
-                choice = parseInt(choice);
-                if (!isNaN(choice) && choice >= 0 && choice <= 2) {
-                    localStorage.setItem('colorIndex', choice);
-                    break;
-                }
-                alert("Please enter a number between 0 and 2.");
+    
+    // Get user input
+    const userName = prompt("Welcome to Volleyball World! What is your name?");
+    
+    if (userName !== null) { // Only proceed if user didn't cancel name prompt
+        let colorChoice;
+        
+        // Keep asking until valid color choice or cancel
+        while (true) {
+            colorChoice = prompt(${userName}, choose a background color:\n0 for grey\n1 for yellow\n2 for green);
+            
+            if (colorChoice === null) break; // User clicked cancel
+            colorChoice = parseInt(colorChoice);
+            
+            if (!isNaN(colorChoice) && colorChoice >= 0 && colorChoice <= 2) {
+                document.body.style.backgroundColor = colors[colorChoice];
+                break;
             }
+            
+            alert("Please enter a number between 0-2");
+        }
+        
+        // Show welcome message if name was provided
+        if (userName.trim() !== '') {
+            showWelcomeMessage(userName);
         }
     }
-
-    // Apply stored preferences
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-
-    if (colorIndex !== null) {
-        document.body.style.backgroundColor = colors[colorIndex];
-    }
-
-    if (userName) {
-        showWelcomeMessage(userName);
-    }
-
+    
+    // Set up page functionality
     setupNavigation();
     setupPlayerCards();
 });
 
-// Shows a welcome message
 function showWelcomeMessage(name) {
     const welcomeMsg = document.createElement('div');
     welcomeMsg.className = 'welcome-message';
-    welcomeMsg.innerHTML = `
+    welcomeMsg.innerHTML = 
         <h3>Welcome, ${name}!</h3>
         <p>Enjoy exploring volleyball!</p>
         <button class="close-btn">×</button>
-    `;
+    ;
+    
     document.body.prepend(welcomeMsg);
-    welcomeMsg.querySelector('.close-btn').addEventListener('click', () => {
+    
+    // Close button functionality
+    welcomeMsg.querySelector('.close-btn').addEventListener('click', function() {
         welcomeMsg.style.display = 'none';
     });
 }
 
-// Highlight current page
 function setupNavigation() {
+    // Highlight current page in nav
     const currentPage = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-menu a').forEach(link => {
         if (link.getAttribute('href') === currentPage) {
@@ -74,36 +62,44 @@ function setupNavigation() {
     });
 }
 
-// Setup player cards interaction
 function setupPlayerCards() {
+    // Make player cards interactive
     const playerCards = document.querySelectorAll('.player-card');
-
+    
     playerCards.forEach(card => {
-        card.addEventListener('click', function (e) {
+        card.addEventListener('click', function(e) {
+            // Don't trigger if clicking on a link inside the card
             if (e.target.tagName === 'A') return;
+            
+            // Close all other expanded cards first
             document.querySelectorAll('.player-card.expanded').forEach(c => {
                 if (c !== this) c.classList.remove('expanded');
             });
+            
+            // Toggle this card's expanded state
             this.classList.toggle('expanded');
         });
     });
-
-    document.addEventListener('click', function (e) {
+    
+    // Close expanded cards when clicking outside
+    document.addEventListener('click', function(e) {
         if (!e.target.closest('.player-card')) {
             playerCards.forEach(card => card.classList.remove('expanded'));
         }
     });
-
+    
+    // Animate cards on page load
     animateCards();
 }
 
-// Animate cards on load
 function animateCards() {
+    // Fade-in animation for cards
     const cards = document.querySelectorAll('.card, .player-card');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
         card.style.transition = 'opacity 0.5s, transform 0.5s';
+        
         setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
@@ -111,22 +107,15 @@ function animateCards() {
     });
 }
 
-// For debug
-console.log("Script loaded!");
+/ Display a message in the browser console
+console.log("CSS + JavaScript is powerful!");
 
-// Alternar entre dark e light mode manualmente
-document.getElementById('toggle-theme')?.addEventListener('click', () => {
-    const currentTheme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('theme', currentTheme);
-    applyTheme(currentTheme);
-});
+// Show an alert message when the page loads
+window.onload = function () {
+    alert("Welcome to Assignment 5 with JavaScript!");
+};
 
-// Mudar o nome do usuário
-document.getElementById('change-name')?.addEventListener('click', () => {
-    const newName = prompt("Qual é o seu novo nome?");
-    if (newName && newName.trim()) {
-        localStorage.setItem('userName', newName.trim());
-        location.reload();
-    }
-});
-
+// Function to toggle between light mode and dark mode
+function changeTheme() {
+    document.body.classList.toggle("dark-mode");
+}
