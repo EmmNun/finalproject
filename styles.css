@@ -19,7 +19,34 @@ body {
     line-height: 1.6;
     color: var(--text);
     background-color: var(--light);
-    transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Dark theme styles */
+body.dark-theme {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+body.dark-theme h1, 
+body.dark-theme h2, 
+body.dark-theme h3, 
+body.dark-theme h4 {
+    color: var(--accent);
+}
+
+body.dark-theme .card,
+body.dark-theme .player-card,
+body.dark-theme .rule-card,
+body.dark-theme .skill,
+body.dark-theme .timeline article {
+    background-color: #3a3f48;
+    color: var(--light);
+}
+
+body.dark-theme .nav-menu a:hover {
+    background-color: var(--accent);
+    color: var(--dark);
 }
 
 a {
@@ -69,6 +96,11 @@ header {
     color: var(--dark);
 }
 
+.nav-menu a.active {
+    background-color: var(--accent);
+    color: var(--dark);
+}
+
 /* Main Content */
 main {
     padding: 2rem;
@@ -96,6 +128,10 @@ h2 {
 h3 {
     font-size: 1.5rem;
     margin-top: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
 }
 
 /* Hero Section */
@@ -284,6 +320,176 @@ h3 {
     margin-bottom: 0.5rem;
 }
 
+/* Contact Form */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: var(--secondary);
+}
+
+/* Welcome Message */
+.welcome-message {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--secondary);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    max-width: 300px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.welcome-message h3 {
+    color: white;
+    margin-top: 0;
+}
+
+.welcome-message .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Affiliate Links */
+.affiliate-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.affiliate-link {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.affiliate-link:hover {
+    transform: translateY(-10px);
+}
+
+.affiliate-link h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.affiliate-link p {
+    margin-bottom: 1.5rem;
+}
+
+.affiliate-link .btn {
+    margin: 0;
+}
+
+/* About Page */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.about-text {
+    padding: 1rem;
+}
+
+.about-image {
+    text-align: center;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.team-member {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.team-member img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    margin: 1rem 0 0.5rem;
+    color: var(--primary);
+}
+
+.team-member p {
+    padding: 0 1rem 1rem;
+}
+
 /* Footer */
 footer {
     background-color: var(--dark);
@@ -291,6 +497,28 @@ footer {
     text-align: center;
     padding: 2rem;
     margin-top: 3rem;
+}
+
+.footer-cta {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+.cta-button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cta-button:hover {
+    background: var(--secondary);
 }
 
 /* Responsive Media Queries */
@@ -320,6 +548,16 @@ footer {
     h2 {
         font-size: 1.5rem;
     }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .welcome-message {
+        right: 0.5rem;
+        left: 0.5rem;
+        max-width: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -339,7 +577,7 @@ footer {
         font-size: 2rem;
     }
     
-    .highlights, .players-grid {
+    .highlights, .players-grid, .team-members {
         grid-template-columns: 1fr;
     }
 }
@@ -349,47 +587,11 @@ footer {
         height: 300px;
     }
     
-    .players-grid {
+    .players-grid, .team-members {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
+    
+    .about-content {
+        gap: 1rem;
+    }
 }
-/* ... todo o CSS anterior que já existe ... */
-
-/* Additional Interactive Styles */
-.welcome-message {
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.player-card.expanded {
-    transform: scale(1.03) !important;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
-    z-index: 10;
-}
-
-.player-card.expanded .player-info {
-    background-color: var(--light);
-}
-  .footer-cta {
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
-    border-top: 1px solid #eee;
-  }
-  .cta-button {
-    background: #3182ce;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .cta-button:hover {
-    background: #2c5282;
-  }

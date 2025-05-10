@@ -1,32 +1,50 @@
 // Volleyball World - script.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Color Selection System
-    const colors = ["#E2E2E2", "#FFD166", "#06D6A0"]; // grey, yellow, green
+    // Check if user data exists in local storage
+    const userData = localStorage.getItem('volleyballUserData');
     
-    // Get user input
-    const userName = prompt("Welcome to Volleyball World! What is your name?");
-    
-    if (userName !== null) { // Only proceed if user didn't cancel name prompt
-        let colorChoice;
+    if (userData) {
+        // User has visited before, use stored preferences
+        const { name, theme } = JSON.parse(userData);
+        applyTheme(theme);
+        showWelcomeMessage(name, true);
+    } else {
+        // First time visitor, ask for preferences
+        const userName = prompt("Welcome to Volleyball World! What is your name?");
         
-        // Keep asking until valid color choice or cancel
-        while (true) {
-            colorChoice = prompt(${userName}, choose a background color:\n0 for grey\n1 for yellow\n2 for green);
+        if (userName && userName.trim() !== '') {
+            let themeChoice;
             
-            if (colorChoice === null) break; // User clicked cancel
-            colorChoice = parseInt(colorChoice);
-            
-            if (!isNaN(colorChoice) && colorChoice >= 0 && colorChoice <= 2) {
-                document.body.style.backgroundColor = colors[colorChoice];
-                break;
+            // Keep asking until valid theme choice or cancel
+            while (true) {
+                themeChoice = prompt(`${userName}, do you prefer dark or light mode? (Type 'dark' or 'light')`);
+                
+                if (themeChoice === null) {
+                    themeChoice = 'light'; // Default to light if canceled
+                    break;
+                }
+                
+                themeChoice = themeChoice.toLowerCase().trim();
+                
+                if (themeChoice === 'dark' || themeChoice === 'light') {
+                    break;
+                }
+                
+                alert("Please type 'dark' or 'light'");
             }
             
-            alert("Please enter a number between 0-2");
-        }
-        
-        // Show welcome message if name was provided
-        if (userName.trim() !== '') {
-            showWelcomeMessage(userName);
+            // Save user preferences to local storage
+            localStorage.setItem('volleyballUserData', JSON.stringify({
+                name: userName,
+                theme: themeChoice
+            }));
+            
+            // Apply user preferences
+            applyTheme(themeChoice);
+            showWelcomeMessage(userName, false);
+        } else {
+            // Default to light theme if name wasn't provided
+            applyTheme('light');
         }
     }
     
@@ -35,60 +53,95 @@ document.addEventListener('DOMContentLoaded', function() {
     setupPlayerCards();
 });
 
-function showWelcomeMessage(name) {
+function applyTheme(theme) {
+    const body = document.body;
+    
+    if (theme === 'dark') {
+        body.style.backgroundColor = '#292F36';
+        body.style.color = '#F7FFF7';
+        // Additional dark theme styles can be applied here
+    } else {
+        body.style.backgroundColor = '#F7FFF7';
+        body.style.color = '#333333';
+        // Additional light theme styles can be applied here
+    }
+}
+
+function showWelcomeMessage(name, isReturning) {
     const welcomeMsg = document.createElement('div');
     welcomeMsg.className = 'welcome-message';
-    welcomeMsg.innerHTML = 
-        <h3>Welcome, ${name}!</h3>
-        <p>Enjoy exploring volleyball!</p>
-        <button class="close-btn">×</button>
-    ;
+    welcomeMsg.style.position = 'fixed';
+    welcomeMsg.style.top = '20px';
+    welcomeMsg.style.right = '20px';
+    welcomeMsg.style.backgroundColor = '#004E89';
+    welcomeMsg.style.color = 'white';
+    welcomeMsg.style.padding = '15px';
+    welcomeMsg.style.borderRadius = '8px';
+    welcomeMsg.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+    welcomeMsg.style.zIndex = '1000';
+    welcomeMsg.style.maxWidth = '300px';
     
-    document.body.prepend(welcomeMsg);
+    const messageText = isReturning ? 
+        `<h3 style="margin-top: 0; color: white;">Welcome back, ${name}!</h3>` : 
+        `<h3 style="margin-top: 0; color: white;">Welcome, ${name}!</h3>`;
+    
+    welcomeMsg.innerHTML = `
+        ${messageText}
+        <p>Enjoy exploring volleyball!</p>
+        <button style="position: absolute; top: 5px; right: 5px; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">×</button>
+    `;
+    
+    document.body.appendChild(welcomeMsg);
     
     // Close button functionality
-    welcomeMsg.querySelector('.close-btn').addEventListener('click', function() {
+    welcomeMsg.querySelector('button').addEventListener('click', function() {
         welcomeMsg.style.display = 'none';
     });
+    
+    // Auto-hide after 10 seconds
+    setTimeout(() => {
+        welcomeMsg.style.display = 'none';
+    }, 10000);
 }
 
 function setupNavigation() {
     // Highlight current page in nav
-    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-menu a').forEach(link => {
         if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
+            link.style.backgroundColor = '#FFD166';
+            link.style.color = '#292F36';
         }
     });
 }
 
 function setupPlayerCards() {
-    // Make player cards interactive
+    // Make player cards interactive if they exist on page
     const playerCards = document.querySelectorAll('.player-card');
     
-    playerCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // Don't trigger if clicking on a link inside the card
-            if (e.target.tagName === 'A') return;
-            
-            // Close all other expanded cards first
-            document.querySelectorAll('.player-card.expanded').forEach(c => {
-                if (c !== this) c.classList.remove('expanded');
+    if (playerCards.length > 0) {
+        playerCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking on a link inside the card
+                if (e.target.tagName === 'A') return;
+                
+                // Toggle expanded class
+                this.classList.toggle('expanded');
+                
+                if (this.classList.contains('expanded')) {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+                    this.style.zIndex = '10';
+                } else {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                    this.style.zIndex = '';
+                }
             });
-            
-            // Toggle this card's expanded state
-            this.classList.toggle('expanded');
         });
-    });
+    }
     
-    // Close expanded cards when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.player-card')) {
-            playerCards.forEach(card => card.classList.remove('expanded'));
-        }
-    });
-    
-    // Animate cards on page load
+    // Apply animation to cards
     animateCards();
 }
 
@@ -105,17 +158,4 @@ function animateCards() {
             card.style.transform = 'translateY(0)';
         }, 100 * index);
     });
-}
-
-/ Display a message in the browser console
-console.log("CSS + JavaScript is powerful!");
-
-// Show an alert message when the page loads
-window.onload = function () {
-    alert("Welcome to Assignment 5 with JavaScript!");
-};
-
-// Function to toggle between light mode and dark mode
-function changeTheme() {
-    document.body.classList.toggle("dark-mode");
 }
