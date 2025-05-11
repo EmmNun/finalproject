@@ -1,27 +1,27 @@
 // Volleyball World - script.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if user data exists in local storage
+    
     const userData = localStorage.getItem('volleyballUserData');
    
     if (userData) {
-        // User has visited before, use stored preferences
+        
         const { name, theme } = JSON.parse(userData);
         applyTheme(theme);
         showWelcomeMessage(name, true);
         updateThemeToggle(theme);
     } else {
-        // First time visitor, ask for preferences
+        
         const userName = prompt("Welcome to Volleyball World! What is your name?");
        
         if (userName && userName.trim() !== '') {
             let themeChoice;
            
-            // Keep asking until valid theme choice or cancel
+            
             while (true) {
                 themeChoice = prompt(`${userName}, do you prefer dark or light mode? (Type 'dark' or 'light')`);
                
                 if (themeChoice === null) {
-                    themeChoice = 'light'; // Default to light if canceled
+                    themeChoice = 'light'; 
                     break;
                 }
                
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert("Please type 'dark' or 'light'");
             }
            
-            // Save user preferences to local storage
+            
             localStorage.setItem('volleyballUserData', JSON.stringify({
                 name: userName,
                 theme: themeChoice
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateThemeToggle(themeChoice);
             showWelcomeMessage(userName, false);
         } else {
-            // Default to light theme if name wasn't provided
+           
             applyTheme('light');
             updateThemeToggle('light');
         }
@@ -72,7 +72,7 @@ function updateThemeToggle(theme) {
     if (themeToggle) {
         themeToggle.checked = (theme === 'dark');
         
-        // Update the label text
+       
         const themeLabel = document.getElementById('theme-toggle-label');
         if (themeLabel) {
             themeLabel.textContent = theme === 'dark' ? '🌙' : '☀️';
@@ -88,11 +88,11 @@ function setupThemeToggle() {
             const userData = JSON.parse(localStorage.getItem('volleyballUserData') || '{}');
             const newTheme = this.checked ? 'dark' : 'light';
             
-            // Update storage
+            
             userData.theme = newTheme;
             localStorage.setItem('volleyballUserData', JSON.stringify(userData));
             
-            // Apply theme
+            
             applyTheme(newTheme);
             updateThemeToggle(newTheme);
         });
@@ -126,19 +126,19 @@ function showWelcomeMessage(name, isReturning) {
    
     document.body.appendChild(welcomeMsg);
    
-    // Close button functionality
+    
     welcomeMsg.querySelector('button').addEventListener('click', function() {
         welcomeMsg.style.display = 'none';
     });
    
-    // Auto-hide after 10 seconds
+    
     setTimeout(() => {
         welcomeMsg.style.display = 'none';
     }, 10000);
 }
 
 function setupNavigation() {
-    // Highlight current page in nav
+    
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-menu a').forEach(link => {
         if (link.getAttribute('href') === currentPage) {
@@ -149,13 +149,13 @@ function setupNavigation() {
 }
 
 function setupPlayerCards() {
-    // Make player cards interactive if they exist on page
+    
     const playerCards = document.querySelectorAll('.player-card');
    
     if (playerCards.length > 0) {
         playerCards.forEach(card => {
             card.addEventListener('click', function(e) {
-                // Don't trigger if clicking on a link inside the card
+                
                 if (e.target.tagName === 'A') return;
                
                 // Toggle expanded class
@@ -174,12 +174,12 @@ function setupPlayerCards() {
         });
     }
    
-    // Apply animation to cards
+   
     animateCards();
 }
 
 function animateCards() {
-    // Fade-in animation for cards
+    
     const cards = document.querySelectorAll('.card, .player-card');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
