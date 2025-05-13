@@ -24,8 +24,8 @@
             padding: 20px;
         }
         .partner-card {
-            background: #e5a84e;
-            border: 1px solid #f2f0ee;
+            background: #f8f9fa;
+            border: 1px solid #c65310;
             border-radius: 8px;
             padding: 20px;
             margin: 15px 0;
@@ -33,12 +33,12 @@
         }
         .partner-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(244, 91, 2, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .partner-link {
             display: inline-block;
             background: #3182ce;
-            color: rgb(247, 243, 242);
+            color: white;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
@@ -79,57 +79,50 @@
         <p>Check my classmates websites:</p>
 
         
+        <!-- Parceiro 1 -->
+        <div class="partner-card">
+            <h3>Michaela Hodge</h3>
+            <p>Basketball World</p>
+            <a href="https://michaelasupreme.github.io/final-project/index.html" 
+               target="_blank"
+               onclick="gtag('event', 'affiliate_click', {
+                 event_category: 'referral',
+                 event_label: 'Michaela Hodge'
+               });"
+               class="partner-link">
+               visit website
+            </a>
+        </div>
         
-        <main class="affiliate-container">
-            <h1>Affiliates</h1>
-            <p>Check my classmates websites:</p>
-    
-            
-            
-            <div class="partner-card">
-                <h3>Michaela Hodge</h3>
-                <p>Basketball World</p>
-                <a href="https://michaelasupreme.github.io/final-project/index.html" 
-                   target="_blank"
-                   onclick="gtag('event', 'affiliate_click', {
-                     event_category: 'referral',
-                     event_label: 'Michaela Hodge'
-                   });"
-                   class="partner-link">
-                   visit website
-                </a>
-            </div>
-            
-            <!-- Parceiro 2 -->
-            <div class="partner-card">
-                <h3>Leo Li</h3>
-                <p>History of chess</p>
-                <a href="https://leol1i.github.io/IT030-/Final_Project_leo_li/" 
-                   target="_blank"
-                   onclick="gtag('event', 'affiliate_click', {
-                     event_category: 'referral',
-                     event_label: 'Leo Li'
-                   });"
-                   class="partner-link">
-                   visit website
-                </a>
-            </div>
-            
-            <!-- Parceiro 3 -->
-            <div class="partner-card">
-                <h3>Karli Langer</h3>
-                <p>Fitness Journey</p>
-                <a href="https://karli525.github.io/KLrepo_one/Final_project/index.html" 
-                   target="_blank"
-                   onclick="gtag('event', 'affiliate_click', {
-                     event_category: 'referral',
-                     event_label: 'Karli Langer'
-                   });"
-                   class="partner-link">
-                   visit website
-                </a>
-            </div>
-           
+        <!-- Parceiro 2 -->
+        <div class="partner-card">
+            <h3>Leo Li</h3>
+            <p>History of chess</p>
+            <a href="https://leol1i.github.io/IT030-/Final_Project_leo_li/" 
+               target="_blank"
+               onclick="gtag('event', 'affiliate_click', {
+                 event_category: 'referral',
+                 event_label: 'Leo Li'
+               });"
+               class="partner-link">
+               visit website
+            </a>
+        </div>
+        
+        <!-- Parceiro 3 -->
+        <div class="partner-card">
+            <h3>Karli Langer</h3>
+            <p>Fitness Journey</p>
+            <a href="https://karli525.github.io/KLrepo_one/Final_project/index.html" 
+               target="_blank"
+               onclick="gtag('event', 'affiliate_click', {
+                 event_category: 'referral',
+                 event_label: 'Karli Langer'
+               });"
+               class="partner-link">
+               visit website
+            </a>
+        </div>
     </main>
 
     <footer>
